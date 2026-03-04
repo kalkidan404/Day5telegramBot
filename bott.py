@@ -39,14 +39,16 @@ async def translate(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if response.status_code == 200:
             try:
                 data = response.json()
-                translated_text = data.get("translated_text") or "Translation empty."
+                translated_text = data.get("translated_text") 
             except Exception:
-                translated_text = f"API returned non-JSON data: {response.text[:100]}"
+                translated_text = None
         else:
-            translated_text = f"API Error {response.status_code}: {response.text[:100]}"
+            translated_text = None
 
     except Exception as e:
-        translated_text = f"Connection failed: {e}"
+        translated_text = None
+        if not translated_text:
+            translated_text="Sorry, I couldn't translate your text at the moment. Please try again later."
 
     await update.message.reply_text(translated_text)
 
