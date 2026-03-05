@@ -29,7 +29,7 @@ async def translate(update: Update, context: ContextTypes.DEFAULT_TYPE):
     payload = {
         "text": text,
         "source_language": "en",
-        "target_language": "ti"
+        "target_language": "fr"
     }
 
     try:
